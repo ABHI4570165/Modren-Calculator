@@ -15,3 +15,5 @@ This is my first project pushed to GitHub! It is a fully functional calculator w
 
 ## 💻 How to Run
 Simply download the files and open `index.html` in your web browser.
+
+![Image](https://github.com/user-attachments/assets/f9007ea3-07ce-4b9b-afc5-da3567682fd1)
