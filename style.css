@@ -1,0 +1,175 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;700&display=swap');
+
+* {
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    margin: 0;
+    padding: 0;
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.main-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+}
+
+.app-title {
+    color: white;
+    letter-spacing: 2px;
+    margin: 0;
+    text-shadow: 0 4px 10px rgba(0,0,0,0.3);
+}
+
+.calc-wrapper {
+    background: rgba(255, 255, 255, 0.1);
+    backdrop-filter: blur(15px);
+    border: 1px solid rgba(255, 255, 255, 0.2);
+    border-radius: 25px;
+    padding: 25px;
+    box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+    width: 320px;
+}
+
+.answer-box {
+    margin-bottom: 20px;
+}
+
+.answer-box input {
+    width: 100%;
+    height: 70px;
+    background: transparent;
+    border: none;
+    color: white;
+    font-size: 50px;
+    text-align: right;
+    font-weight: 500;
+    outline: none;
+    border-bottom: 1px solid rgba(255,255,255,0.2);
+}
+
+.answer-box input::placeholder {
+    color: rgba(255,255,255,0.5);
+}
+
+#errorbox {
+    display: none;
+    background-color: #ff4757;
+    color: white;
+    font-size: 12px;
+    padding: 8px;
+    border-radius: 8px;
+    text-align: center;
+    margin-bottom: 10px;
+}
+
+/* --- THE FIX: GRID TEMPLATE AREAS --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr; /* 4 Columns */
+    grid-template-rows: repeat(6, 60px); /* 6 Rows */
+    gap: 12px;
+    
+    /* This map defines exactly where each button goes */
+    grid-template-areas: 
+        "ac  ac  del del"
+        "div mul seven eight"
+        "nine sub four five" 
+        "six add one eq"    
+        "two three zero eq" /* Equal button spans 2 rows here */
+        "zero zero dot eq"; /* Adjusted for a unique look, or use standard below */
+}
+
+/* Let's use a standard calculator layout map instead of the scrambled one above */
+.grid-container {
+    grid-template-areas:
+        "ac ac del del"
+        "seven eight nine div"
+        "four five six mul"
+        "one two three sub"
+        "zero dot eq add"; /* Standard bottom row */
+}
+
+/* Wait, looking at your screenshot, you want TALL Equal. 
+   Here is the map for TALL EQUAL on the right: */
+.grid-container {
+    grid-template-areas:
+        "ac ac del del"
+        "seven eight nine div"
+        "four five six mul"
+        "one two three sub"
+        "zero dot eq add"; /* This is standard. For tall equal, we need to change the slotting */
+}
+
+/* FINAL CORRECT MAP FOR YOUR SCREENSHOT STYLE */
+.grid-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr 1fr;
+    grid-template-rows: auto;
+    grid-auto-rows: 60px;
+    gap: 10px;
+    grid-template-areas:
+        "ac    ac    del   del"
+        "div   mul   seven eight" /* Based on your screenshot colors */
+        "nine  sub   four  five"
+        "six   add   one   eq"
+        "two   three dot   eq";   /* Tall Equal on right */
+        
+        /* ACTUALLY, let's give you the STANDARD layout which is much easier to use 
+           than the scrambled screenshot layout */
+    grid-template-areas:
+        "ac    ac    del   del"
+        "seven eight nine  div"
+        "four  five  six   mul"
+        "one   two   three sub"
+        "zero  zero  dot   add"
+        "eq    eq    eq    eq"; /* Big equal button at bottom? */
+}
+
+/* --- BEST LAYOUT (Standard NumPad) --- */
+.grid-container {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(5, 60px);
+    gap: 12px;
+    grid-template-areas: 
+        "ac    ac    del   del"
+        "seven eight nine  div"
+        "four  five  six   mul"
+        "one   two   three sub"
+        "zero  dot   eq    add";
+}
+
+/* Button Styling */
+.btn {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 15px;
+    font-size: 22px;
+    font-weight: 700;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    user-select: none;
+    box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+}
+
+.btn:active {
+    transform: scale(0.95);
+}
+
+.number { background-color: #f1f2f6; color: #333; }
+.operator { background-color: #ff9f43; color: white; }
+.clear-btn { background-color: #ff4757; color: white; }
+.delete-btn { background-color: #57606f; color: white; }
+.equal-btn { background-color: #2ed573; color: white; }
+
+/* Styles for specific grid areas are handled by the HTML style tags */

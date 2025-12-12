@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modern Calculator</title>
+    <link href="style.css" rel="stylesheet" />
+</head>
+<body>
+    
+    <div class="main-container">
+        <h1 class="app-title">Calculator</h1>
+        
+        <div class="calc-wrapper">
+            <div id="errorbox"></div>
+
+            <div class="answer-box">
+                <input id="data" type="text" placeholder="0" readonly />
+            </div>
+
+            <div class="grid-container">
+                <div class="btn clear-btn" style="grid-area: ac;" onclick="triger('reset')">AC</div>
+                <div class="btn delete-btn" style="grid-area: del;" onclick="triger('del')">DEL</div>
+
+                <div class="btn number" style="grid-area: seven;" onclick="triger(7)">7</div>
+                <div class="btn number" style="grid-area: eight;" onclick="triger(8)">8</div>
+                <div class="btn number" style="grid-area: nine;" onclick="triger(9)">9</div>
+                <div class="btn operator" style="grid-area: div;" onclick="triger('/')">÷</div>
+
+                <div class="btn number" style="grid-area: four;" onclick="triger(4)">4</div>
+                <div class="btn number" style="grid-area: five;" onclick="triger(5)">5</div>
+                <div class="btn number" style="grid-area: six;" onclick="triger(6)">6</div>
+                <div class="btn operator" style="grid-area: mul;" onclick="triger('*')">×</div>
+
+                <div class="btn number" style="grid-area: one;" onclick="triger(1)">1</div>
+                <div class="btn number" style="grid-area: two;" onclick="triger(2)">2</div>
+                <div class="btn number" style="grid-area: three;" onclick="triger(3)">3</div>
+                <div class="btn operator" style="grid-area: sub;" onclick="triger('-')">-</div>
+
+                <div class="btn number" style="grid-area: zero;" onclick="triger(0)">0</div>
+                <div class="btn number" style="grid-area: dot;" onclick="triger('.')">.</div>
+                <div class="btn operator" style="grid-area: add;" onclick="triger('+')">+</div>
+                <div class="btn equal-btn" style="grid-area: eq;" onclick="triger('=')">=</div>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
