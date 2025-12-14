@@ -80,7 +80,7 @@ body {
     
     /* This map defines exactly where each button goes */
     grid-template-areas: 
-        "ac  ac  del del"
+        "acz  ac  del mod"
         "div mul seven eight"
         "nine sub four five" 
         "six add one eq"    
@@ -91,7 +91,7 @@ body {
 /* Let's use a standard calculator layout map instead of the scrambled one above */
 .grid-container {
     grid-template-areas:
-        "ac ac del del"
+        "ac ac del mod"
         "seven eight nine div"
         "four five six mul"
         "one two three sub"
@@ -102,7 +102,7 @@ body {
    Here is the map for TALL EQUAL on the right: */
 .grid-container {
     grid-template-areas:
-        "ac ac del del"
+        "ac ac del mod"
         "seven eight nine div"
         "four five six mul"
         "one two three sub"
@@ -117,7 +117,7 @@ body {
     grid-auto-rows: 60px;
     gap: 10px;
     grid-template-areas:
-        "ac    ac    del   del"
+        "ac    ac    del   mod"
         "div   mul   seven eight" /* Based on your screenshot colors */
         "nine  sub   four  five"
         "six   add   one   eq"
@@ -126,7 +126,7 @@ body {
         /* ACTUALLY, let's give you the STANDARD layout which is much easier to use 
            than the scrambled screenshot layout */
     grid-template-areas:
-        "ac    ac    del   del"
+        "ac    ac    del   mod"
         "seven eight nine  div"
         "four  five  six   mul"
         "one   two   three sub"
@@ -141,7 +141,7 @@ body {
     grid-template-rows: repeat(5, 60px);
     gap: 12px;
     grid-template-areas: 
-        "ac    ac    del   del"
+        "ac    ac    del   mod"
         "seven eight nine  div"
         "four  five  six   mul"
         "one   two   three sub"
