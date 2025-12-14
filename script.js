@@ -1,7 +1,9 @@
+let resultShown = false;
+
 function triger(keyPressed) {
     const display = document.getElementById("data");
     const errorBox = document.getElementById("errorbox");
-    
+
     // Clear error message when user clicks a button
     if (errorBox.style.display !== 'none') {
         errorBox.style.display = 'none';
@@ -10,11 +12,16 @@ function triger(keyPressed) {
 
     if (keyPressed === 'reset') {
         fullClear();
-    } 
-    else if (typeof keyPressed === 'number') {
-        // If it's a number
+        resultShown = false;
+    }
+    else if (typeof keyPressed === 'number' || keyPressed === '.') {
+        // If it's a number or dot
+        if (resultShown) {
+            fullClear();
+            resultShown = false;
+        }
         printValue(keyPressed);
-    } 
+    }
     else if (keyPressed === '=') {
         if (display.value === '') {
             errorCall("Enter calculation");
@@ -22,19 +29,20 @@ function triger(keyPressed) {
             try {
                 // Warning: eval is dangerous in real apps, but okay for a simple calculator
                 let result = eval(display.value);
-                
+
                 // Fix long decimals (e.g. 0.1 + 0.2)
                 if(!Number.isInteger(result)){
                     result = result.toFixed(2);
                 }
-                
+
                 fullClear();
                 printValue(result);
+                resultShown = true;
             } catch (e) {
                 errorCall("Invalid Format");
             }
         }
-    } 
+    }
     else if (keyPressed === 'del') {
         if (display.value === '') {
             // Do nothing if empty
@@ -42,13 +50,18 @@ function triger(keyPressed) {
             let AfterSlice = display.value.slice(0, -1);
             fullClear();
             printValue(AfterSlice);
+            resultShown = false;
         }
-    } 
+    }
     else {
-        // Handle Operators (+ - * / .)
+        // Handle Operators (+ - * / %)
+        if (resultShown) {
+            fullClear();
+            resultShown = false;
+        }
         let PresentData = display.value;
         const lastChar = PresentData.slice(-1);
-        const operators = ['+', '-', '/', '*', '.'];
+        const operators = ['+', '-', '/', '*', '%', '(', ')'];
 
         // Prevent double operators (e.g., ++ or /+)
         if (operators.includes(lastChar)) {
@@ -58,7 +71,7 @@ function triger(keyPressed) {
             printValue(fixedData);
         } else {
             // If empty, prevent starting with * or /
-            if(PresentData === '' && (keyPressed === '*' || keyPressed === '/')) {
+            if(PresentData === '' && (keyPressed === '*' || keyPressed === '/' || keyPressed === '%')) {
                 errorCall("Start with number");
             } else {
                 printValue(keyPressed);
